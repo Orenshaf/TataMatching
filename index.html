@@ -37,6 +37,7 @@
 </head>
 
 <body>
+    <div id="acronymList"></div>
     <h1>Enter ProductSKU to Find Shared Ingredients</h1>
     <input type="text" id="productSKU" style="margin-right: 10px;">
     <button onclick="findSharedIngredients()"
@@ -116,6 +117,21 @@
             "STC": "Redefining Body Balm",
             "SXC": "Refining Cleanser"
         };
+
+        // Generate and display the acronym key
+        document.addEventListener('DOMContentLoaded', function () {
+            const acronymListDiv = document.getElementById('acronymList');
+            const sortedAcronyms = Object.keys(skuToName).sort();
+            let acronymListHTML = '<h3>Acronym Key:</h3><ul>';
+
+            sortedAcronyms.forEach(acronym => {
+                acronymListHTML += `<li>${acronym} - ${skuToName[acronym]}</li>`;
+            });
+
+            acronymListHTML += '</ul>';
+            acronymListDiv.innerHTML = acronymListHTML;
+        });
+        
         const ingredientsData = [
             {
                 "Ingredient Name": "Abies Pectinata Oil",
